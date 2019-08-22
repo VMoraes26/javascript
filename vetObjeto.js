@@ -1,6 +1,6 @@
 function funcao() {
     var vet = [];
-    
+
     for (var i = 0; i < 5; i++) {
         var objeto = {};
         //Coloca os dados no objeto
@@ -12,4 +12,10 @@ function funcao() {
         //Coloca o objeto no vetor
         vet.push(objeto);
     }
+
+    var estoque = 0
+    for (var i = 0; i < 5; i++) {
+        estoque = estoque + vet[i].qtde
+    }
+    alert("Qtde em estoque " + estoque)
 }
