@@ -39,10 +39,7 @@ function cadastraVendedor(vendedores) {
 
 function cadastraVenda(vendas, vendedores) {
     var objeto = {};
-    var cola = "";
-    for (var i = 0; i < vendedores.length; i++) {
-        cola = cola + vendedores[i].codigo + " " + vendedores[i].nome + "\n"
-    }
+    var cola = colar(vendedores);
     objeto.codigo = Number(prompt("Código Funcionário \n" + cola))
     objeto.valor = Number(prompt("Valor"))
     objeto.mes = Number(prompt("Mês"))
@@ -50,10 +47,7 @@ function cadastraVenda(vendas, vendedores) {
 }
 
 function consultaVendasMes(vendas, vendedores) {
-    var cola = "";
-    for (var i = 0; i < vendedores.length; i++) {
-        cola = cola + vendedores[i].codigo + " " + vendedores[i].nome + "\n"
-    }
+    var cola = colar(vendedores);
     var cod = Number(prompt("Código \n" + cola))
     var mes = Number(prompt("Mês"))
     for (var i = 0; i < vendas.length; i++) {
@@ -69,11 +63,7 @@ function consultaVendasMes(vendas, vendedores) {
 }
 
 function consultaVendasVendedor() {
-    var cola = ""
-    for (var i = 0; i < vendedores.length; i++) {
-        cola = cola + vendedores[i].codigo +
-            "\n" + vendedores[i].nome;
-    }
+    var cola = colar(vendedores);
     var cod = Number(prompt("Código " + "\n" + cola))
     var soma = 0;
     for (var i = 0; i < vendas.length; i++) {
@@ -113,4 +103,12 @@ function mesMaisVendas(vendas) {
         }
     }
     alert(mesMaior)
+}
+
+function colar(vendedores) {
+    var cola = "";
+    for (var i = 0; i < vendedores.length; i++) {
+        cola = cola + vendedores[i].codigo + " " + vendedores[i].nome + "\n"
+    }
+    return cola;
 }
