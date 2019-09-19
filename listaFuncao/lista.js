@@ -60,16 +60,25 @@ function lista() {
             case 19:
                 let vet1 = [];
                 let vet2 = [];
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < 3; i++) {
                     vet1.push(Number(prompt("Entre com um número inteiros para o primerio vetor")))
                 }
-                for (var i = 0; i < 10; i++) {
+                for (var i = 0; i < 3; i++) {
                     vet2.push(Number(prompt("Entre com um número inteiros para o segundo vetor")))
                 }
                 ex19(vet1, vet2)
                 break;
             case 20:
-                ex20(num2)
+                var vetEx19 = []
+                do {
+                    var objeto = {}
+                    objeto.salario = Number(prompt("Informe o salario"))
+                    objeto.filhos = Number(prompt("Informe qtd de filhos"))
+                    vetEx19.push(objeto)
+                    var opcao = prompt("Quer sair? S/N")
+                }
+                while (opcao != "N")
+                ex20(vetEx19)
                 break;
             default:
                 alert("Exercicio não existe")
@@ -171,15 +180,64 @@ function ex18() {
 
 function ex19(vet1, vet2) {
     var vetIntersec = []
-    for (var i = 0; i < 10; i++) {
-        for (var j = 0; j < 10; j++) {
+    for (var i = 0; i < vet1.length; i++) {
+        var existe = false
+        for (var j = 0; j < vet2.length; j++) {
             if (vet1[i] == vet2[j]) {
-                vetIntersec.push(vet1[i])
+                for (var x = 0; x < vetIntersec.length; x++) {
+                    if (vetIntersec[x] == vet1[i]) {
+                        existe = true
+                    }
+                }
+                if (!existe) {
+                    vetIntersec.push(vet1[i])
+                }
             }
         }
     }
     alert("Vetor intersecção: " + vetIntersec)
 }
 
-function ex20(num) {
+function ex20(vetorEx19) {
+    var mediaFilhos = mediaFilhos(vetorEx19)
+    var mediaSalarial = mediaSalarial(vetorEx19)
+    var maiorSalario = maiorSalario(vetorEx19)
+
+
+    alert(`A média de filhos é ${mediaFilhos}`)
+    alert(`A média salarial é ${mediaSalarial}`)
+    alert(`O maior salario é ${maiorSalario}`)
+
+    function mediaFilhos() {
+        var soma = 0
+
+        for (var i = 0; i < vetorEx19.length; i++) {
+            soma = soma + vetorEx19[i].filhos
+        }
+
+        return soma / vetorEx19.length
+    }
+
+    function mediaSalarial() {
+        var soma = 0
+
+        for (var i = 0; i < vetorEx19.length; i++) {
+            soma = soma + vetorEx19[i].salario
+        }
+
+        return soma / vetorEx19.length
+    }
+
+
+    function maiorSalario() {
+        var maior = 0
+
+        for (var i = 0; i < vetorEx19.length; i++) {
+            if (vetorEx19[i].salario > maior) {
+                maior = vet[i].salario
+            }
+        }
+
+        return maior
+    }
 }
