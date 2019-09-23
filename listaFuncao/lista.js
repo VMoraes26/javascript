@@ -69,16 +69,17 @@ function lista() {
                 ex19(vet1, vet2)
                 break;
             case 20:
-                var vetEx19 = []
+                var vetorEx20 = []
+                var opcao;
                 do {
                     var objeto = {}
                     objeto.salario = Number(prompt("Informe o salario"))
                     objeto.filhos = Number(prompt("Informe qtd de filhos"))
-                    vetEx19.push(objeto)
-                    var opcao = prompt("Quer sair? S/N")
+                    vetorEx20.push(objeto)
+                    opcao = prompt("Quer sair? S/N")
                 }
-                while (opcao != "N")
-                ex20(vetEx19)
+                while (opcao != "S" && opcao != "s")
+                ex20(vetorEx20)
                 break;
             default:
                 alert("Exercicio não existe")
@@ -198,46 +199,59 @@ function ex19(vet1, vet2) {
     alert("Vetor intersecção: " + vetIntersec)
 }
 
-function ex20(vetorEx19) {
-    var mediaFilhos = mediaFilhos(vetorEx19)
-    var mediaSalarial = mediaSalarial(vetorEx19)
-    var maiorSalario = maiorSalario(vetorEx19)
+function ex20(vetorEx20) {
+    var mediaFilhos = mediaFilhos(vetorEx20)
+    var mediaSalarial = mediaSalarial(vetorEx20)
+    var maiorSalario = maiorSalario(vetorEx20)
+    var percentual = percent(vetorEx20)
 
 
     alert(`A média de filhos é ${mediaFilhos}`)
     alert(`A média salarial é ${mediaSalarial}`)
     alert(`O maior salario é ${maiorSalario}`)
+    alert(`O percentual de salarios até 350: ${percentual}%`)
 
-    function mediaFilhos() {
+    function mediaFilhos(vet) {
         var soma = 0
 
-        for (var i = 0; i < vetorEx19.length; i++) {
-            soma = soma + vetorEx19[i].filhos
+        for (var i = 0; i < vet.length; i++) {
+            soma = soma + vet[i].filhos
         }
 
-        return soma / vetorEx19.length
+        return soma / vet.length
     }
 
-    function mediaSalarial() {
+    function mediaSalarial(vet) {
         var soma = 0
 
-        for (var i = 0; i < vetorEx19.length; i++) {
-            soma = soma + vetorEx19[i].salario
+        for (var i = 0; i < vet.length; i++) {
+            soma = soma + vet[i].salario
         }
 
-        return soma / vetorEx19.length
+        return soma / vet.length
     }
 
 
-    function maiorSalario() {
+    function maiorSalario(vet) {
         var maior = 0
 
-        for (var i = 0; i < vetorEx19.length; i++) {
-            if (vetorEx19[i].salario > maior) {
+        for (var i = 0; i < vet.length; i++) {
+            if (vet[i].salario > maior) {
                 maior = vet[i].salario
             }
         }
 
         return maior
+    }
+
+    function percent(vet) {
+        let qtd = 0
+        for (var i = 0; i < vet.length; i++) {
+            if (vet[i].salario <= 350) {
+                qtd += 1
+            }
+        }
+        let perc = qtd / vet.length * 100
+        return perc
     }
 }
